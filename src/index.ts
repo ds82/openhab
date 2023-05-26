@@ -1,12 +1,13 @@
-import { ItemName, RuleExecuteFn, Trigger } from "./types";
+import { ItemName, RuleExecuteFn, Trigger } from './types';
 
-const { rules, triggers } = require("openhab");
+import { rules, triggers } from 'openhab';
 
-export * from "./items";
-export * from "./triggers";
+export * as items from './items';
+export * as triggers from './triggers';
+export * as datefns from './datefns';
 
 const ruleDefaultOther = {
-  description: "",
+  description: '',
 };
 
 export const addRule = (
