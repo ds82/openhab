@@ -1,4 +1,4 @@
-const { ON, OFF } = require("@runtime");
+const { ON, OFF } = require('@runtime');
 
 export type RuleExecuteFn = (event: unknown) => void;
 
@@ -7,7 +7,7 @@ export type Trigger = any;
 export type ChannelName = string;
 export type ChannelEvent = string;
 
-export type Item = {};
+export type Item = any;
 export type ItemName = string;
 export type ItemOrName = Item | string;
 
@@ -17,5 +17,9 @@ export enum SwitchState {
   ON,
   OFF,
 }
+export enum ContactState {
+  OPEN,
+  CLOSED,
+}
 
-export type ItemState = SwitchState;
+export type ItemState = string | undefined;

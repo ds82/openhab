@@ -1,6 +1,5 @@
-const { triggers } = require("openhab");
-
-import { ItemState, ItemName, ChannelName, ChannelEvent } from "./types";
+import { triggers } from 'openhab';
+import { ItemState, ItemName, ChannelName, ChannelEvent } from './types';
 
 export const timeTrigger = (cronExpression: string, triggerName?: string) =>
   triggers.GenericCronTrigger(cronExpression, triggerName);
