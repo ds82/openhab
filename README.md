@@ -15,6 +15,8 @@ npm install @ds82/openhab@beta
 After successful installation you can start writing rules using this library.
 
 ```ts
+// js/test.js
+
 const {
   addRule,
   timeTrigger,
