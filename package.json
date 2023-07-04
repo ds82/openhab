@@ -4,7 +4,8 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "author": "Dennis Sänger <npm-openhab-23@mail.ds82.de>",
   "license": "ISC",
