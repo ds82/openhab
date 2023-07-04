@@ -7,7 +7,7 @@ This is a helper library with the goal to extend and improve the default openhab
 Switch to the `conf/automation/js/` folder of openhab3 and install this library using `npm`:
 
 ```
-npm install @ds82/openhab
+npm install @ds82/openhab@beta
 ```
 
 ## Usage
