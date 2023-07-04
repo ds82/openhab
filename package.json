@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "doc": "typedoc --options ./typedoc.json --out ./docs ./src"
+    "docs": "typedoc --options ./typedoc.json --out ./docs ./src"
   },
   "author": "Dennis Sänger <npm-openhab-23@mail.ds82.de>",
   "license": "ISC",
