@@ -21,3 +21,6 @@ export const channelTrigger = (
   event: ChannelEvent,
   triggerName?: string
 ) => triggers.ChannelEventTrigger(channel, event, triggerName);
+
+export const commandTrigger = (itemName: ItemName, event: ItemState) =>
+  triggers.ItemCommandTrigger(itemName, event);

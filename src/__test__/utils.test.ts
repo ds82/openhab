@@ -1,4 +1,4 @@
-import * as uut from '../utils';
+import * as uut from '../datefns';
 import * as items from '../items';
 
 jest.mock('../items');
@@ -29,11 +29,6 @@ describe('dateFromItem', () => {
 });
 
 describe('isBeforeItem', () => {
-
   // it('should return true if now is before timestamp in given item', () => {})
-
   // it('should return false if now is after timestamp in given item', () => {})
-
-
-
 });

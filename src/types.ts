@@ -1,4 +1,4 @@
-const { ON, OFF } = require('@runtime');
+const { ON: _ON, OFF: _OFF } = require('@runtime');
 
 export type RuleExecuteFn = (event: unknown) => void;
 
@@ -13,13 +13,15 @@ export type ItemOrName = Item | string;
 
 export type Command = string;
 
+export const ON = _ON;
+export const OFF = _OFF;
 export enum SwitchState {
-  ON,
-  OFF,
+  ON = _ON,
+  OFF = _OFF,
 }
 export enum ContactState {
-  OPEN,
-  CLOSED,
+  OPEN = 'OPEN',
+  CLOSED = 'CLOSED',
 }
 
 export type ItemState = string | undefined;
