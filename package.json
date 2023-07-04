@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "doc": "typedoc --options ./typedoc.json --out ./docs ./src"
   },
   "author": "Dennis Sänger <npm-openhab-23@mail.ds82.de>",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
     "ts-node": "^10.9.1",
+    "typedoc": "^0.24.8",
     "typescript": "^5.0.4"
   },
   "dependencies": {
