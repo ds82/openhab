@@ -1,3 +1,6 @@
+/**
+ * @module items
+ */
 import { items } from 'openhab';
 
 import { ItemName, Command, Item, ItemOrName, ChannelName } from './types';
@@ -28,7 +31,7 @@ export const getChannelValue = (channel: ChannelName) => {
 };
 
 export const is = <T = string>(itemName: ItemName, state: T) => {
-  return getState(itemName) === state;
+  return String(getState(itemName)) === String(state);
 };
 
 export const isOn = (itemName: ItemName): boolean => {
@@ -39,10 +42,29 @@ export const isOff = (itemName: ItemName): boolean => {
   return is(itemName, T.SwitchState.OFF);
 };
 
+export const isClosed = (itemName: ItemName): boolean => {
+  return is(itemName, T.ContactState.CLOSED);
+};
+
+export const isOpen = (itemName: ItemName): boolean => {
+  return is(itemName, T.ContactState.OPEN);
+};
+
 export const forceOn = (itemName: ItemName): void => {
   sendCommand(itemName, T.SwitchState.ON);
 };
 
 export const forceOff = (itemName: ItemName): void => {
   sendCommand(itemName, T.SwitchState.OFF);
+};
+
+export const on = (itemName: ItemName): void => {
+  if (isOff(itemName)) {
+    sendCommand(itemName, T.SwitchState.ON);
+  }
+};
+export const off = (itemName: ItemName): void => {
+  if (isOn(itemName)) {
+    sendCommand(itemName, T.SwitchState.OFF);
+  }
 };
