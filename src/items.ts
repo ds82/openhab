@@ -34,6 +34,11 @@ export const is = <T = string>(itemName: ItemName, state: T) => {
   return String(getState(itemName)) === String(state);
 };
 
+/**
+ * Checks if a switch item has the state "ON"
+ * @param itemName - The name of the item
+ * @returns boolean
+ */
 export const isOn = (itemName: ItemName): boolean => {
   return is(itemName, T.SwitchState.ON);
 };
@@ -67,4 +72,36 @@ export const off = (itemName: ItemName): void => {
   if (isOn(itemName)) {
     sendCommand(itemName, T.SwitchState.OFF);
   }
+};
+
+/**
+ * Sends OPEN command to a contactItem if it is closed
+ */
+export const open = (itemName: T.ContactItemName): void => {
+  if (isClosed(itemName)) {
+    forceOpen(itemName);
+  }
+};
+
+/**
+ * Sends CLOSED command to a contactItem if it is open
+ */
+export const close = (itemName: T.ContactItemName): void => {
+  if (isOpen(itemName)) {
+    forceClose(itemName);
+  }
+};
+
+/**
+ * Sends OPEN command to a contactItem no matter its state
+ */
+export const forceOpen = (itemName: T.ContactItemName): void => {
+  sendCommand(itemName, T.ContactState.OPEN);
+};
+
+/**
+ * Sends CLOSED command to a contactItem no matter its state
+ */
+export const forceClose = (itemName: T.ContactItemName): void => {
+  sendCommand(itemName, T.ContactState.CLOSED);
 };
