@@ -3,7 +3,14 @@
  */
 import { items } from 'openhab';
 
-import { ItemName, Command, Item, ItemOrName, ChannelName } from './types';
+import {
+  ItemName,
+  Command,
+  Update,
+  Item,
+  ItemOrName,
+  ChannelName,
+} from './types';
 import * as T from './types';
 
 export const getItem = (itemName: ItemName): Item => {
@@ -24,6 +31,13 @@ export const getState = (itemName: ItemName): string => {
 
 export const sendCommand = <T = Command>(itemName: ItemName, command: T) => {
   items.getItem(itemName)?.sendCommand(command as string);
+};
+
+/**
+ * Sends an update to an item
+ */
+export const postUpdate = <T = Update>(itemName: ItemName, update: T) => {
+  items.getItem(itemName)?.postUpdate(update as string);
 };
 
 export const getChannelValue = (channel: ChannelName) => {

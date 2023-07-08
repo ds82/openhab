@@ -42,6 +42,7 @@ export type ItemName =
 export type ItemOrName = Item | string;
 
 export type Command = string;
+export type Update = string;
 
 export const ON = _ON;
 export const OFF = _OFF;
