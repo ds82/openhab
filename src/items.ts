@@ -110,12 +110,12 @@ export const close = (itemName: T.ContactItemName): void => {
  * Sends OPEN command to a contactItem no matter its state
  */
 export const forceOpen = (itemName: T.ContactItemName): void => {
-  sendCommand(itemName, T.ContactState.OPEN);
+  postUpdate(itemName, T.ContactState.OPEN);
 };
 
 /**
  * Sends CLOSED command to a contactItem no matter its state
  */
 export const forceClose = (itemName: T.ContactItemName): void => {
-  sendCommand(itemName, T.ContactState.CLOSED);
+  postUpdate(itemName, T.ContactState.CLOSED);
 };
