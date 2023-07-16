@@ -48,6 +48,13 @@ export const is = <T = string>(itemName: ItemName, state: T) => {
   return String(getState(itemName)) === String(state);
 };
 
+export const historicState = (
+  itemName: ItemName,
+  date: Date /*T.Datelike*/
+) => {
+  return items.getItem(itemName)?.history?.historicState(date);
+};
+
 /**
  * Checks if a switch item has the state "ON"
  * @param itemName - The name of the item
