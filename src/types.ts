@@ -64,3 +64,5 @@ export enum ContactState {
 }
 
 export type ItemState = string | undefined;
+
+export type Datelike = Date | number;

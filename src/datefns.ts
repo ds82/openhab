@@ -10,9 +10,7 @@ import {
 } from 'date-fns';
 import { getItem } from './items';
 
-import type { ItemName, DateTimeItemName } from './types';
-
-type Datelike = Date | number;
+import type { ItemName, DateTimeItemName, Datelike } from './types';
 
 const DEFAULT_FORMAT = 'dd.MM.yyyy HH:mm:ss';
 
