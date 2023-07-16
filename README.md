@@ -1,4 +1,6 @@
-# @ds82/openhab 
+# @ds82/openhab
+
+![npm (scoped)](https://img.shields.io/npm/v/%40ds82/openhab) ![npm (scoped with tag)](https://img.shields.io/npm/v/%40ds82/openhab/beta)
 
 This is a helper library with the goal to extend and improve the default openhab3 javascript rule syntax.
 
@@ -17,26 +19,17 @@ After successful installation you can start writing rules using this library.
 ```ts
 // js/test.js
 
-const {
-  addRule,
-  timeTrigger,
-  forceOn,
-} = require("@ds82/openhab");
-
+const { addRule, timeTrigger, forceOn } = require('@ds82/openhab');
 
 addRule(
-  "Dim lights at 19.30",
+  'Dim lights at 19.30',
   function () {
-    forceOn("Upstairs_Floor_Nightmode");
+    forceOn('Upstairs_Floor_Nightmode');
   },
-  [timeTrigger("0 30 19 ? * *")]
+  [timeTrigger('0 30 19 ? * *')]
 );
-
 ```
-
 
 ## Documentation
 
 Find the documentation of this library at [https://ds82.github.io/openhab/index.html](https://ds82.github.io/openhab/index.html)
-
-
