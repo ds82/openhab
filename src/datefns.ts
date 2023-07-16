@@ -10,7 +10,7 @@ import {
 } from 'date-fns';
 import { getItem } from './items';
 
-import type { ItemName } from './types';
+import type { ItemName, DateTimeItemName } from './types';
 
 type Datelike = Date | number;
 
@@ -20,6 +20,10 @@ export { isSameDay };
 
 export const getFormatedDate = (datetime: Datelike) => {
   return format(datetime, DEFAULT_FORMAT);
+};
+
+export const datetime = () => {
+  return getFormatedDate(Date.now());
 };
 
 export const dateFromItem = (item: ItemName) => {
@@ -35,12 +39,18 @@ export const isWorkDay = (day: Datelike) => {
   return d > 0 && d < 6;
 };
 
-export const isBeforeItem = (item: ItemName, when = Date.now()) => {
+/**
+ * Checks whether the DateTime state of the given item is before the given date or now() if no date is given
+ *  @param item - The name of the DateTime item
+ *  @param when - The date to compare with (optional)
+ *  @returns boolean
+ */
+export const isBeforeItem = (item: DateTimeItemName, when = Date.now()) => {
   const state = dateFromItem(item);
   return isBefore(when, state);
 };
 
-export const isAfterItem = (item: ItemName, when = Date.now()) => {
+export const isAfterItem = (item: DateTimeItemName, when = Date.now()) => {
   const state = dateFromItem(item);
   return isAfter(when, state);
 };
