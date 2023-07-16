@@ -25,8 +25,9 @@ export const exists = (itemName: ItemName): boolean => {
   }
 };
 
-export const getState = (itemName: ItemName): string => {
-  return items.getItem(itemName)?.state ?? '';
+export const getState = (itemName: ItemName): string | number => {
+  const item = items.getItem(itemName);
+  return item?.numericState ?? item?.state ?? '';
 };
 
 export const sendCommand = <T = Command>(itemName: ItemName, command: T) => {
@@ -125,4 +126,17 @@ export const forceOpen = (itemName: T.ContactItemName): void => {
  */
 export const forceClose = (itemName: T.ContactItemName): void => {
   postUpdate(itemName, T.ContactState.CLOSED);
+};
+
+export const up = (itemName: T.RollershutterItemName, value = 0): void => {
+  const state = getState(itemName) as number;
+  if (state > value) {
+    sendCommand(itemName, value);
+  }
+};
+export const down = (itemName: T.RollershutterItemName, value = 100): void => {
+  const state = getState(itemName) as number;
+  if (value > state) {
+    sendCommand(itemName, value);
+  }
 };
