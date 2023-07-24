@@ -12,7 +12,32 @@ export type Trigger = any;
 export type ChannelName = string;
 export type ChannelEvent = string;
 
-export type Item = any;
+export type RawItem = any;
+export type RawItemState = any;
+export type ItemHistory = any;
+export type ItemSemantics = any;
+export type Quantity = any;
+
+export type Item = {
+  rawItem: RawItem;
+  history: ItemHistory;
+  semantics: ItemSemantics;
+  type: string;
+  name: string;
+  label: string;
+  state: string;
+  numericState: number;
+  quantityState: Quantity | null;
+  rawState: RawItemState;
+  members: Item[];
+  descendents: Item[];
+  isUninitialized: boolean;
+  groupNames: string[];
+  tags: string[];
+  // TODO: metadata
+  sendCommand: (command: Command) => void;
+  getToggleState: () => string;
+};
 // export type ItemName = string;
 
 export type CallItemName = string;

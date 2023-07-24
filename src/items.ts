@@ -13,16 +13,18 @@ import {
 } from './types';
 import * as T from './types';
 
-export const getItem = (itemName: ItemName): Item => {
-  return items.getItem(itemName);
+import { ensureArray, map, ap } from './utils';
+
+export const getItem = (itemName: ItemName): Item | null => {
+  return items.getItem(itemName, true);
+};
+
+export const getMembers = (groupName: ItemName): Item[] | null => {
+  return getItem(groupName)?.members ?? null;
 };
 
 export const exists = (itemName: ItemName): boolean => {
-  try {
-    return getItem(itemName) && true;
-  } catch (e) {
-    return false;
-  }
+  return getItem(itemName) !== null;
 };
 
 export const getState = (itemName: ItemName): string | number => {
@@ -30,6 +32,11 @@ export const getState = (itemName: ItemName): string | number => {
   return item?.numericState ?? item?.state ?? '';
 };
 
+/**
+ * Sends a command to the specified item
+ * @param itemName - The name of the item
+ * @command command - The command to send
+ */
 export const sendCommand = <T = Command>(itemName: ItemName, command: T) => {
   items.getItem(itemName)?.sendCommand(command as string);
 };
@@ -41,19 +48,15 @@ export const postUpdate = <T = Update>(itemName: ItemName, update: T) => {
   items.getItem(itemName)?.postUpdate(update as string);
 };
 
+/**
+ * @hidden
+ */
 export const getChannelValue = (channel: ChannelName) => {
   return '';
 };
 
 export const is = <T = string>(itemName: ItemName, state: T) => {
   return String(getState(itemName)) === String(state);
-};
-
-export const historicState = (
-  itemName: ItemName,
-  date: Date /*T.Datelike*/
-) => {
-  return items.getItem(itemName)?.history?.historicState(date);
 };
 
 /**
@@ -77,6 +80,16 @@ export const isOpen = (itemName: ItemName): boolean => {
   return is(itemName, T.ContactState.OPEN);
 };
 
+/**
+ * Toogles the state of an item
+ * @param itemName - The name of the item
+ * @returns null if item does not exist or has no tgoggle value
+ */
+export const toggle = (itemName: ItemName): void | null => {
+  const togglValue = getItem(itemName)?.getToggleState() ?? null;
+  return togglValue !== null ? sendCommand(itemName, togglValue) : null;
+};
+
 export const forceOn = (itemName: ItemName): void => {
   sendCommand(itemName, T.SwitchState.ON);
 };
@@ -90,6 +103,11 @@ export const on = (itemName: ItemName): void => {
     sendCommand(itemName, T.SwitchState.ON);
   }
 };
+
+/**
+ * Sends OFF command to a switchItem if it is on
+ * @param itemName - The name of the item
+ */
 export const off = (itemName: ItemName): void => {
   if (isOn(itemName)) {
     sendCommand(itemName, T.SwitchState.OFF);
@@ -98,6 +116,8 @@ export const off = (itemName: ItemName): void => {
 
 /**
  * Sends OPEN command to a contactItem if it is closed
+ * @param itemName - The name of the item
+ *
  */
 export const open = (itemName: T.ContactItemName): void => {
   if (isClosed(itemName)) {
@@ -107,6 +127,7 @@ export const open = (itemName: T.ContactItemName): void => {
 
 /**
  * Sends CLOSED command to a contactItem if it is open
+ * @param itemName - The name of the item
  */
 export const close = (itemName: T.ContactItemName): void => {
   if (isOpen(itemName)) {
@@ -117,7 +138,7 @@ export const close = (itemName: T.ContactItemName): void => {
 /**
  * Sends OPEN command to a contactItem no matter its state
  */
-export const forceOpen = (itemName: T.ContactItemName): void => {
+const forceOpen = (itemName: T.ContactItemName): void => {
   postUpdate(itemName, T.ContactState.OPEN);
 };
 
@@ -134,6 +155,7 @@ export const up = (itemName: T.RollershutterItemName, value = 0): void => {
     sendCommand(itemName, value);
   }
 };
+
 export const down = (itemName: T.RollershutterItemName, value = 100): void => {
   const state = getState(itemName) as number;
   if (value > state) {

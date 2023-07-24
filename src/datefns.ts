@@ -1,3 +1,4 @@
+import { time } from 'openhab';
 import {
   format,
   parseISO,
@@ -16,6 +17,10 @@ const DEFAULT_FORMAT = 'dd.MM.yyyy HH:mm:ss';
 
 export { isSameDay };
 
+export const now = () => {
+  return time.toZDT(undefined);
+};
+
 export const getFormatedDate = (datetime: Datelike) => {
   return format(datetime, DEFAULT_FORMAT);
 };
@@ -25,7 +30,7 @@ export const datetime = () => {
 };
 
 export const dateFromItem = (item: ItemName) => {
-  return parseISO(getItem(item).state);
+  return parseISO(getItem(item)?.state ?? '');
 };
 
 export const isDayBefore = (day1: Datelike, day2: Datelike) => {

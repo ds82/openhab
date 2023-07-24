@@ -1,4 +1,10 @@
 {
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "@ds82/openhab API",
   "excludeExternals": true,
-  "exclude": []
+  "exclude": [],
+  "navigationLinks": {
+    "Docs": "https://ds82.github.io/openhab/index.html",
+    "GitHub": "https://github.com/ds82/openhab"
+  }
 }

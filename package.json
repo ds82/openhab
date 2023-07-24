@@ -1,6 +1,6 @@
 {
   "name": "@ds82/openhab",
-  "version": "0.0.1-beta.8",
+  "version": "0.0.1-beta.11",
   "description": "",
   "main": "build/index.js",
   "types": "./openhab.d.ts",
@@ -9,6 +9,7 @@
     "build": "tsc",
     "types": "tsc -d --outFile openhab.d.ts --emitDeclarationOnly",
     "docs": "typedoc --options ./typedoc.json --out ./docs ./src",
+    "watch:docs": "find src/ -name '*.ts' | entr -c npm run docs",
     "prepublishOnly": "npm run build && npm run types && npm run docs"
   },
   "author": "Dennis Sänger <npm-openhab-23@mail.ds82.de>",
