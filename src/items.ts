@@ -27,7 +27,9 @@ export const exists = (itemName: ItemName): boolean => {
 
 export const getState = (itemName: ItemName): string | number => {
   const item = items.getItem(itemName);
-  return item?.numericState ?? item?.state ?? '';
+  return (item?.type ?? '') === 'NumberItem'
+    ? parseFloat(item?.state ?? '0')
+    : item?.state ?? '';
 };
 
 export const sendCommand = <T = Command>(itemName: ItemName, command: T) => {
