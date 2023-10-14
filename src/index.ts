@@ -8,6 +8,7 @@ export * as triggers from './triggers';
 export * as datefns from './datefns';
 
 export * from './items';
+export * from './history';
 export * from './triggers';
 export * from './datefns';
 
