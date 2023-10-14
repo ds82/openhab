@@ -11,6 +11,7 @@ export * from './items';
 export * from './history';
 export * from './triggers';
 export * from './datefns';
+export * from './types';
 
 const ruleDefaultOther = {
   description: '',
