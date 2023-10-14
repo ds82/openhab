@@ -13,16 +13,18 @@ import {
 } from './types';
 import * as T from './types';
 
-export const getItem = (itemName: ItemName): Item => {
-  return items.getItem(itemName);
+import { ensureArray, map, ap } from './utils';
+
+export const getItem = (itemName: ItemName): Item | null => {
+  return items.getItem(itemName, true);
+};
+
+export const getMembers = (groupName: ItemName): Item[] | null => {
+  return getItem(groupName)?.members ?? null;
 };
 
 export const exists = (itemName: ItemName): boolean => {
-  try {
-    return getItem(itemName) && true;
-  } catch (e) {
-    return false;
-  }
+  return getItem(itemName) !== null;
 };
 
 export const getState = (itemName: ItemName): string | number => {
