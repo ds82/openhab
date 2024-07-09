@@ -24,6 +24,13 @@ export const historicState = (
   return items.getItem(itemName)?.history?.historicState(date);
 };
 
+export const historicValue = (
+  itemName: ItemName,
+  date: Date /*T.Datelike*/
+) => {
+  return historicState(itemName, date)?.state;
+};
+
 export const sumSince = (itemName: ItemName, date: Date /*T.Datelike*/) => {
   return items.getItem(itemName)?.history?.sumSince(date);
 };
