@@ -46,3 +46,11 @@ export const minimumSince = (itemName: ItemName, date: Date /*T.Datelike*/) => {
 export const lastUpdate = (itemName: ItemName): unknown => {
   return items.getItem(itemName)?.history?.lastUpdate();
 };
+
+export const changedBetween = (
+  itemName: ItemName,
+  start: Date,
+  end: Date
+): unknown => {
+  return items.getItem(itemName)?.history?.changedBetween(start, end);
+};
