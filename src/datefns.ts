@@ -26,7 +26,7 @@ export const getFormatedDate = (datetime: Datelike) => {
 };
 
 export const datetime = () => {
-  return time.toZDT().toLocalDateTime().toString();
+  return time.toZDT(undefined).toLocalDateTime().toString();
 };
 
 export const dateFromItem = (item: ItemName) => {

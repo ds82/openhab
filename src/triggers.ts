@@ -7,13 +7,13 @@ export const timeTrigger = (cronExpression: string, triggerName?: string) =>
 
 export const changeStateTrigger = (
   itemName: ItemName,
-  newState: ItemState,
-  oldState: ItemState
+  newState: string | undefined,
+  oldState: string | undefined
 ) => triggers.ItemStateChangeTrigger(itemName, oldState, newState);
 
 export const updateStateTrigger = (
   itemName: ItemName,
-  newState: ItemState,
+  newState: string | undefined,
   triggerName?: string
 ) => triggers.ItemStateUpdateTrigger(itemName, newState, triggerName);
 
@@ -23,7 +23,7 @@ export const channelTrigger = (
   triggerName?: string
 ) => triggers.ChannelEventTrigger(channel, event, triggerName);
 
-export const commandTrigger = (itemName: ItemName, event: ItemState) =>
+export const commandTrigger = (itemName: ItemName, event: string | undefined) =>
   triggers.ItemCommandTrigger(itemName, event);
 
 const groupTrigger =

@@ -19,6 +19,10 @@ export const getItem = (itemName: ItemName): Item | null => {
   return items.getItem(itemName, true);
 };
 
+export const getItemName = (item: Item) => {
+  return item.name || item.rawItem?.name;
+};
+
 export const getMembers = (groupName: ItemName): Item[] | null => {
   return getItem(groupName)?.members ?? null;
 };
